@@ -1,0 +1,73 @@
+function createCard(text,type){
+
+    const card = document.createElement("div");
+    card.classList.add("card", type);
+    card.innerHTML = text;
+    card.style.background = "linear-gradient(to right, #00c6ff, #0072ff)";
+    card.style.borderRadius = "10px";
+    card.style.border ="1px solid red"
+    card.style.padding = "10px";
+    card.style.boxShadow = "0px 0px 15px black";
+    
+    return card;
+  }
+
+
+
+
+
+function GetDetails(){
+
+
+// clearing previous data
+const personal_details = document.querySelector('#personal-details');
+const personal_img = document.querySelector('#personal-img');
+
+personal_details.innerHTML = "";
+personal_img.innerHTML = "";
+
+
+// getting user input
+const userinput = document.querySelector('#username')
+const user = userinput.value
+
+
+// if input is empty
+if(user ===""){
+      alert("Please enter a username");
+      return;
+}
+
+const profile_heading = document.querySelector('#profile-heading');
+profile_heading.innerText = "Profile Summary"
+
+// fetching
+
+const url = fetch(`https://api.github.com/users/${user}`)
+
+url.then((response)=>{
+      return response.json();
+}).then((data)=>{
+  console.log(data);
+  personal_details.appendChild(createCard(`Name : ${data.name}`, "name"))
+  personal_details.appendChild(createCard(`username : @${data.login}`, "userid"))
+  personal_details.appendChild(createCard(`Bio : ${data.bio}`, "bio"))
+  personal_details.appendChild(createCard(`Followers : ${data.followers}`, "followers"))
+  personal_details.appendChild(createCard(`Following : ${data.following}`, "following"))
+  personal_details.appendChild(createCard(`Public Repo : ${data.public_repos}`, "repos"))
+  personal_details.appendChild(createCard(`Public Gists : ${data.public_gists}`, "gists"))
+  personal_details.appendChild(createCard(`Joined : ${new Date(data.created_at).toLocaleDateString()}`, "created"))
+  personal_details.appendChild(createCard(`updated_at : ${new Date(data.updated_at).toLocaleDateString()}`, "updated_at"))
+  personal_details.appendChild(createCard(`ID : ${data.id}`, "ID"))
+  personal_details.appendChild(createCard(`E-mail : ${data.email}`, "email"))
+  personal_details.appendChild(createCard(`Company : ${data.company}`, "company"))
+  personal_details.appendChild(createCard(`Location : ${data.location}`, "location"))
+  personal_details.appendChild(createCard(`Node_id : ${data.node_id}`, "node_id"))
+  personal_img.appendChild(createCard(`<img src="${data.avatar_url}" alt="img">`, "avatar"))
+
+
+})
+
+userinput.value = "";
+
+}
