@@ -3,11 +3,14 @@ function createCard(text,type){
     const card = document.createElement("div");
     card.classList.add("card", type);
     card.innerHTML = text;
-    card.style.background = "linear-gradient(to right, #00c6ff, #0072ff)";
+    card.style.background = "linear-gradient(to right, #0e191dff, #1272e8ff)";
     card.style.borderRadius = "10px";
     card.style.border ="1px solid red"
     card.style.padding = "10px";
     card.style.boxShadow = "0px 0px 15px black";
+    card.style.alignItems= "center";
+    card.style.color="white";
+    
     
     return card;
   }
@@ -68,6 +71,37 @@ url.then((response)=>{
 
 })
 
+
+
+
+// followers manupulation
+
+
+
+fetch(`https://api.github.com/users/${user}/followers`)
+.then((response)=>{
+      return response.json();
+}).then((data)=>{
+  console.log(data);
+
+  const follow_info = document.querySelector('#follow-info');
+
+  follow_info.appendChild(createCard(`Showing Name of ${data.length} followers : `, "total_followers"));
+
+  data.forEach(follower => {
+      follow_info.appendChild(createCard(` <img src="${follower.avatar_url}" alt="img" style="width: 30px; height: 30px; border-radius: 50%;">    Name : ${follower.login} `, "follower"))
+     
+  });
+
+  const info = document.querySelector('#info');
+  info.innerHTML = '<h2>Followers : </h2>'
+  
+})
+
 userinput.value = "";
+
+
+
+
 
 }
