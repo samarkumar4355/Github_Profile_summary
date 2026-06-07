@@ -30,6 +30,9 @@ personal_details.innerHTML = "";
 personal_img.innerHTML = "";
 
 
+const follow_info = document.querySelector('#follow-info');
+follow_info.innerHTML ="";
+
 // getting user input
 const userinput = document.querySelector('#username')
 const user = userinput.value
