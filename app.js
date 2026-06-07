@@ -5,7 +5,7 @@ function createCard(text,type){
     card.innerHTML = text;
     card.style.background = "linear-gradient(to right, #0e191dff, #1272e8ff)";
     card.style.borderRadius = "10px";
-    card.style.border ="1px solid red"
+    // card.style.border ="1px solid red"
     card.style.padding = "10px";
     card.style.boxShadow = "0px 0px 15px black";
     card.style.alignItems= "center";

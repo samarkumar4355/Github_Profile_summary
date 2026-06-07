@@ -73,7 +73,7 @@ input{
     border-radius: 20px;
     border-style: none;
     background-color: white;
-    border: 3px solid red;
+    border: 3px solid rgb(221, 211, 211);
     background:linear-gradient(to right, black , blue);
 }
 /* button */
