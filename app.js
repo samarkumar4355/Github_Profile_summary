@@ -3,6 +3,7 @@ function createCard(text,type){
     const card = document.createElement("div");
     card.classList.add("card", type);
     card.innerHTML = text;
+    
     card.style.background = "linear-gradient(to right, #0e191dff, #1272e8ff)";
     card.style.borderRadius = "10px";
     // card.style.border ="1px solid red"
@@ -37,15 +38,17 @@ follow_info.innerHTML ="";
 const userinput = document.querySelector('#username')
 const user = userinput.value
 
+const profile_heading = document.querySelector('#profile-heading');
+profile_heading.innerText = "Profile Summary"
 
 // if input is empty
 if(user ===""){
       alert("Please enter a username");
+       profile_heading.innerText = "See Github Summary By Using Username"
       return;
 }
 
-const profile_heading = document.querySelector('#profile-heading');
-profile_heading.innerText = "Profile Summary"
+
 
 // fetching
 
@@ -100,6 +103,13 @@ fetch(`https://api.github.com/users/${user}/followers`)
   info.innerHTML = '<h2>Followers : </h2>'
   
 })
+
+
+
+  
+
+
+
 
 userinput.value = "";
 
