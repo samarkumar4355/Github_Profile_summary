@@ -34,12 +34,17 @@ personal_img.innerHTML = "";
 const follow_info = document.querySelector('#follow-info');
 follow_info.innerHTML ="";
 
+
+
 // getting user input
 const userinput = document.querySelector('#username')
 const user = userinput.value
 
 const profile_heading = document.querySelector('#profile-heading');
 profile_heading.innerText = "Profile Summary"
+
+
+
 
 // if input is empty
 if(user ===""){
@@ -50,7 +55,7 @@ if(user ===""){
 
 
 
-// fetching
+// fetching summary details
 
 const url = fetch(`https://api.github.com/users/${user}`)
 
@@ -75,7 +80,9 @@ url.then((response)=>{
   personal_img.appendChild(createCard(`<img src="${data.avatar_url}" alt="img">`, "avatar"))
 
 
-})
+}).catch((error)=>{
+    alert("Something went wrong!");
+});
 
 
 
@@ -97,12 +104,14 @@ fetch(`https://api.github.com/users/${user}/followers`)
   data.forEach(follower => {
       follow_info.appendChild(createCard(` <img src="${follower.avatar_url}" alt="img" style="width: 30px; height: 30px; border-radius: 50%;">    Name : ${follower.login} `, "follower"))
      
-  });
+  })
 
-  const info = document.querySelector('#info');
-  info.innerHTML = '<h2>Followers : </h2>'
   
-})
+  
+}).catch((error)=>{
+    console.log(error);
+    alert("Something went wrong!");
+});
 
 
 
